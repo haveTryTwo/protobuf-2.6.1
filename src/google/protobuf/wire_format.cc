@@ -596,7 +596,7 @@ bool WireFormat::ParseAndMergeField(
         string value;
         if (!WireFormatLite::ReadString(input, &value)) return false;
         VerifyUTF8StringNamedField(value.data(), value.length(), PARSE,
-                                   field->name().c_str());
+                                   field->name().c_str()); // NOTE:htt, 额外校验是否为UTF8类型，但是没有做不满足判断;3.x版本做了校验
         if (field->is_repeated()) {
           message_reflection->AddString(message, field, value);
         } else {
@@ -607,7 +607,7 @@ bool WireFormat::ParseAndMergeField(
 
       case FieldDescriptor::TYPE_BYTES: {
         string value;
-        if (!WireFormatLite::ReadBytes(input, &value)) return false;
+        if (!WireFormatLite::ReadBytes(input, &value)) return false; // NOTE:htt, 无额外校验
         if (field->is_repeated()) {
           message_reflection->AddString(message, field, value);
         } else {

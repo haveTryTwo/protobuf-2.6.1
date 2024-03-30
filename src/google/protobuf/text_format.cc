@@ -95,13 +95,13 @@ string Message::ShortDebugString() const {
   return debug_string;
 }
 
-string Message::Utf8DebugString() const {
+string Message::Utf8DebugString() const { // NOTE:htt, 不转移utf8序列,针对bytes类型无效,针对string类型有效
   string debug_string;
 
   TextFormat::Printer printer;
   printer.SetUseUtf8StringEscaping(true);
 
-  printer.PrintToString(*this, &debug_string);
+  printer.PrintToString(*this, &debug_string); // NOTE:htt, 打印不转义utf8序列
 
   return debug_string;
 }
@@ -1347,7 +1347,7 @@ TextFormat::Printer::~Printer() {
 
 void TextFormat::Printer::SetUseUtf8StringEscaping(bool as_utf8) {
   SetDefaultFieldValuePrinter(as_utf8
-                              ? new FieldValuePrinterUtf8Escaping()
+                              ? new FieldValuePrinterUtf8Escaping() // NOTE:htt, 打印不转义utf8序列
                               : new FieldValuePrinter());
 }
 

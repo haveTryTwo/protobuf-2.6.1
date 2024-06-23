@@ -119,7 +119,7 @@ class RepeatedField {
   void Add(const Element& value);
   Element* Add();
   // Remove the last element in the array.
-  void RemoveLast();
+  void RemoveLast(); // NOTE:htt, 删除最后的元素
 
   // Extract elements with indices in "[start .. start+num-1]".
   // Copy them into "elements[0 .. num-1]" if "elements" is not NULL.
@@ -156,7 +156,7 @@ class RepeatedField {
   void Swap(RepeatedField* other);
 
   // Swap two elements.
-  void SwapElements(int index1, int index2);
+  void SwapElements(int index1, int index2); // NOTE:htt, 交换elements
 
   // STL-like iterator support
   typedef Element* iterator;
@@ -385,7 +385,7 @@ inline const MessageLite& GenericTypeHandler<MessageLite>::default_instance() {
 }
 
 template <>
-inline const Message& GenericTypeHandler<Message>::default_instance() {
+inline const Message& GenericTypeHandler<Message>::default_instance() { // NOTE:htt, 构建默认instance
   // Yes, the behavior of the code is undefined, but this function is only
   // called when we're already deep into the world of undefined, because the
   // caller called Get(index) out of bounds.
@@ -911,7 +911,7 @@ inline typename TypeHandler::Type* RepeatedPtrFieldBase::Add() {
 template <typename TypeHandler>
 inline void RepeatedPtrFieldBase::RemoveLast() {
   GOOGLE_DCHECK_GT(current_size_, 0);
-  TypeHandler::Clear(cast<TypeHandler>(elements_[--current_size_]));
+  TypeHandler::Clear(cast<TypeHandler>(elements_[--current_size_])); // NOTE:htt, 清楚最后元素
 }
 
 template <typename TypeHandler>

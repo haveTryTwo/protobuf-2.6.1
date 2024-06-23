@@ -87,7 +87,7 @@ void GoogleOnceInitImpl(ProtobufOnceType* once, Closure* closure) {
     // wait until it completes the initialization.
     while (state == ONCE_STATE_EXECUTING_CLOSURE) {
       // Note that futex() could be used here on Linux as an improvement.
-      SchedYield();
+      SchedYield(); // NOTE:htt, 放弃当前CPU，调度给其他线程
       state = internal::Acquire_Load(once);
     }
   }

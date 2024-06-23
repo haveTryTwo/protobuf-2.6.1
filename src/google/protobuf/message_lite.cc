@@ -128,7 +128,7 @@ bool InlineMergeFromCodedStream(io::CodedInputStream* input,
 
 bool InlineParseFromCodedStream(io::CodedInputStream* input,
                                 MessageLite* message) {
-  message->Clear();
+  message->Clear(); // NOTE:htt, 会将message内容Clear()，即可以重复使用 ParseFromArray()/ParseFromString()
   return InlineMergeFromCodedStream(input, message);
 }
 
@@ -139,7 +139,7 @@ bool InlineParsePartialFromCodedStream(io::CodedInputStream* input,
 }
 
 bool InlineParseFromArray(const void* data, int size, MessageLite* message) {
-  io::CodedInputStream input(reinterpret_cast<const uint8*>(data), size);
+  io::CodedInputStream input(reinterpret_cast<const uint8*>(data), size); // NOTE:htt, 构建输入请求流
   return InlineParseFromCodedStream(&input, message) &&
          input.ConsumedEntireMessage();
 }
@@ -195,7 +195,7 @@ bool MessageLite::ParsePartialFromBoundedZeroCopyStream(
          decoder.BytesUntilLimit() == 0;
 }
 
-bool MessageLite::ParseFromString(const string& data) {
+bool MessageLite::ParseFromString(const string& data) { // NOTE:htt,从字符串中解析
   return InlineParseFromArray(data.data(), data.size(), this);
 }
 
@@ -203,7 +203,7 @@ bool MessageLite::ParsePartialFromString(const string& data) {
   return InlineParsePartialFromArray(data.data(), data.size(), this);
 }
 
-bool MessageLite::ParseFromArray(const void* data, int size) {
+bool MessageLite::ParseFromArray(const void* data, int size) { // NOTE:htt, 从二进制中解析
   return InlineParseFromArray(data, size, this);
 }
 

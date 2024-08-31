@@ -193,7 +193,7 @@ public interface MessageLite extends MessageLiteOrBuilder {
      * verify that the last tag seen was the appropriate end-group tag,
      * or zero for EOF.
      */
-    Builder mergeFrom(CodedInputStream input) throws IOException;
+    Builder mergeFrom(CodedInputStream input) throws IOException;  // NOTE:htt, 和input数据一起Merge
 
     /**
      * Like {@link Builder#mergeFrom(CodedInputStream)}, but also
@@ -215,7 +215,7 @@ public interface MessageLite extends MessageLiteOrBuilder {
      *
      * @return this
      */
-    Builder mergeFrom(ByteString data) throws InvalidProtocolBufferException;
+    Builder mergeFrom(ByteString data) throws InvalidProtocolBufferException;  // NOTE:htt, 和data数据一起Merge
 
     /**
      * Parse {@code data} as a message of this type and merge it with the

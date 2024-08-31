@@ -147,9 +147,9 @@ template<typename T>
 class RepeatedPtrField;  // repeated_field.h
 
 // A container to hold message metadata.
-struct Metadata {
-  const Descriptor* descriptor;
-  const Reflection* reflection;
+struct Metadata {  // NOTE:htt, protobuf的元数据
+  const Descriptor* descriptor;  // NOTE:htt, 对象描述符
+  const Reflection* reflection;  // NOTE:htt, 对象反射
 };
 
 // Abstract interface for protocol messages.
@@ -177,14 +177,14 @@ class LIBPROTOBUF_EXPORT Message : public MessageLite {
   // Make this message into a copy of the given message.  The given message
   // must have the same descriptor, but need not necessarily be the same class.
   // By default this is just implemented as "Clear(); MergeFrom(from);".
-  virtual void CopyFrom(const Message& from);
+  virtual void CopyFrom(const Message& from);  // NOTE:htt, 复制from数据
 
   // Merge the fields from the given message into this message.  Singular
   // fields will be overwritten, if specified in from, except for embedded
   // messages which will be merged.  Repeated fields will be concatenated.
   // The given message must be of the same type as this message (i.e. the
   // exact same class).
-  virtual void MergeFrom(const Message& from);
+  virtual void MergeFrom(const Message& from);  // NOTE:htt, 和from数据合并，简单字段直接覆盖，repeated字段追加
 
   // Verifies that IsInitialized() returns true.  GOOGLE_CHECK-fails otherwise, with
   // a nice error message.
@@ -221,11 +221,11 @@ class LIBPROTOBUF_EXPORT Message : public MessageLite {
 
   // Generates a human readable form of this message, useful for debugging
   // and other purposes.
-  string DebugString() const;
+  string DebugString() const;  // NOTE:htt, 内容可视化显示
   // Like DebugString(), but with less whitespace.
   string ShortDebugString() const;
   // Like DebugString(), but do not escape UTF-8 byte sequences.
-  string Utf8DebugString() const;
+  string Utf8DebugString() const;  // NOTE:htt, 采用UTF8编码显示
   // Convenience function useful in GDB.  Prints DebugString() to stdout.
   void PrintDebugString() const;
 
@@ -306,11 +306,11 @@ class LIBPROTOBUF_EXPORT Message : public MessageLite {
   // Get a struct containing the metadata for the Message. Most subclasses only
   // need to implement this method, rather than the GetDescriptor() and
   // GetReflection() wrappers.
-  virtual Metadata GetMetadata() const  = 0;
+  virtual Metadata GetMetadata() const  = 0;  // NOTE:htt, 子类实现具体方法
 
 
  private:
-  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Message);
+  GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(Message);  // NOTE:htt, 禁止复制
 };
 
 // This interface contains methods that can be used to dynamically access

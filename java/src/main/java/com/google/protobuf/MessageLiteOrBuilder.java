@@ -36,7 +36,7 @@ package com.google.protobuf;
  *
  * @author jonp@google.com (Jon Perlow)
  */
-public interface MessageLiteOrBuilder {
+public interface MessageLiteOrBuilder {  // NOTE:htt, MessageLite接口
   /**
    * Get an instance of the type with no fields set. Because no fields are set,
    * all getters for singular fields will return default values and repeated
@@ -47,7 +47,7 @@ public interface MessageLiteOrBuilder {
    * whereas {@code getDefaultInstance()} is a static method of a specific
    * class.  They return the same thing.
    */
-  MessageLite getDefaultInstanceForType();
+  MessageLite getDefaultInstanceForType();  // NOTE:htt, 默认的MessageLite
 
   /**
    * Returns true if all required fields in the message and all embedded
@@ -55,6 +55,6 @@ public interface MessageLiteOrBuilder {
    *
    * <p>See also: {@link MessageOrBuilder#getInitializationErrorString()}
    */
-  boolean isInitialized();
+  boolean isInitialized();  // NOTE:htt, 判断是否初始化
 
 }

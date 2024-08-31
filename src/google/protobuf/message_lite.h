@@ -134,7 +134,7 @@ class LIBPROTOBUF_EXPORT MessageLite {
   bool ParsePartialFromBoundedZeroCopyStream(io::ZeroCopyInputStream* input,
                                              int size);
   // Parse a protocol buffer contained in a string.
-  bool ParseFromString(const string& data);
+  bool ParseFromString(const string& data);  // NOTE:htt, 从string中解析数据
   // Like ParseFromString(), but accepts messages that are missing
   // required fields.
   bool ParsePartialFromString(const string& data);
@@ -183,7 +183,7 @@ class LIBPROTOBUF_EXPORT MessageLite {
   bool SerializePartialToZeroCopyStream(io::ZeroCopyOutputStream* output) const;
   // Serialize the message and store it in the given string.  All required
   // fields must be set.
-  bool SerializeToString(string* output) const;
+  bool SerializeToString(string* output) const;  // NOTE:htt, 序列化到string中
   // Like SerializeToString(), but allows missing required fields.
   bool SerializePartialToString(string* output) const;
   // Serialize the message and store it in the given byte array.  All required

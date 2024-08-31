@@ -85,6 +85,7 @@ namespace std {}
 namespace google {
 namespace protobuf {
 
+// NOTE:htt, 禁止复制
 #undef GOOGLE_DISALLOW_EVIL_CONSTRUCTORS
 #define GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(TypeName)    \
   TypeName(const TypeName&);                           \

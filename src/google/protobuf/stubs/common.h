@@ -114,6 +114,7 @@ namespace internal {
 
 // The current version, represented as a single integer to make comparison
 // easier:  major * 10^6 + minor * 10^3 + micro
+// NOTE:htt, google protobuf version: 2.6.1
 #define GOOGLE_PROTOBUF_VERSION 2006001
 
 // The minimum library version which works with the current version of the

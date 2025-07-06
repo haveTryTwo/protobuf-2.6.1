@@ -81,7 +81,7 @@ void VerifyVersion(int headerVersion,
   }
 }
 
-string VersionString(int version) {
+string VersionString(int version) {  // NOTE:htt, current protobuf version: MAJOR.MINOR.MICRO 2.6.1
   int major = version / 1000000;
   int minor = (version / 1000) % 1000;
   int micro = version % 1000;

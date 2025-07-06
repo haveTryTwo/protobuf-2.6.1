@@ -162,7 +162,7 @@ struct Metadata {  // NOTE:htt, protobuf的元数据
 // optimized for speed will want to override these with faster implementations,
 // but classes optimized for code size may be happy with keeping them.  See
 // the optimize_for option in descriptor.proto.
-class LIBPROTOBUF_EXPORT Message : public MessageLite {
+class LIBPROTOBUF_EXPORT Message : public MessageLite {  // NOTE:htt, 消息体接口,包含descriptor和reflection
  public:
   inline Message() {}
   virtual ~Message();

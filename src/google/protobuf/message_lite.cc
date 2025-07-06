@@ -287,7 +287,7 @@ bool MessageLite::AppendPartialToString(string* output) const {
   return true;
 }
 
-bool MessageLite::SerializeToString(string* output) const {
+bool MessageLite::SerializeToString(string* output) const {  // NOTE:htt, 将消息序列化到output中
   output->clear();
   return AppendToString(output);
 }
